@@ -1,0 +1,4 @@
+npm create vite@latest earthrecom-frontend -- --template react
+cd earthrecom-frontend
+npm i
+npm i maplibre-gl

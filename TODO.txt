@@ -1,0 +1,15 @@
+tech search for syphoning map data via frontent to DB and 
+from the DB live to the map(?) - (is it gonna be live live or
+mini batch live?) - (do we need data stream or is it going to
+be loadable after quering?). 
+
+geolocation API. (searching best 2026 option)
+
+abstract app schema
+abstract DB schema (postgres)
+readMe.md
+
+file structuring via namespace
+classes
+
+tests (imma need help on that)

@@ -1,17 +1,17 @@
-import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react";
+import { defineConfig } from "vite"
+import react from "@vitejs/plugin-react"
+import { viteStaticCopy } from "vite-plugin-static-copy"
 
 export default defineConfig({
-  plugins: [react()],
-  server: {
-    headers: {
-      "Content-Security-Policy":
-        "default-src 'self' blob: data: https: http:; " +
-        "script-src 'self' 'unsafe-eval' 'unsafe-inline' blob: https: http:; " +
-        "worker-src 'self' blob:; " +
-        "style-src 'self' 'unsafe-inline' https: http:; " +
-        "img-src 'self' data: blob: https: http:; " +
-        "connect-src 'self' https: http: ws:;"
-    }
+  plugins: [
+    react(),
+    viteStaticCopy({
+      targets: [
+        { src: "node_modules/cesium/Build/Cesium/**", dest: "cesium" }
+      ]
+    })
+  ],
+  define: {
+    CESIUM_BASE_URL: JSON.stringify("/cesium/")
   }
-});
+})

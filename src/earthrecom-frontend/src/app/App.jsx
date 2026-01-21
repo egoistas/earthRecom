@@ -29,35 +29,40 @@ export default function App() {
 
   return (
     <div style={{ width: "100vw", height: "100vh" }}>
-      <div style={{ position: "absolute", zIndex: 10, top: 12, left: 12, width: 420 }}>
-        <ControlPanel
-          mode={state.mode}
-          defaultAlt={state.defaultAlt}
-          featureAlt={state.featureAlt}
-          onMode={(mode) => dispatch({ type: "SET_MODE", mode })}
-          onDefaultAlt={(value) => dispatch({ type: "SET_DEFAULT_ALT", value })}
-          onFeatureAlt={(value) => dispatch({ type: "SET_FEATURE_ALT", value })}
-          onClearAB={() => dispatch({ type: "CLEAR_AB" })}
-          onClearFeatures={() => dispatch({ type: "CLEAR_FEATURES" })}
-          onResetAll={() => dispatch({ type: "RESET_ALL" })}
-        />
-        <div
-          style={{
-            marginTop: 10,
-            padding: 12,
-            background: "rgba(15,15,15,0.75)",
-            color: "white",
-            borderRadius: 10,
-            fontFamily: "system-ui, sans-serif"
-          }}
-        >
-          <Status mode={state.mode} A={state.A} B={state.B} featuresCount={state.features.length} />
-          <FeatureList
-            features={state.features}
-            onDelete={(id) => dispatch({ type: "DELETE_FEATURE", id })}
-          />
-        </div>
-      </div>
+      <div
+  style={{
+    position: "absolute",
+    zIndex: 10,
+    top: 12,
+    left: 12,
+    width: 420,
+    padding: 12,
+    background: "rgba(15,15,15,0.75)",
+    color: "white",
+    borderRadius: 10,
+    fontFamily: "system-ui, sans-serif"
+  }}
+>
+  <ControlPanel
+    mode={state.mode}
+    defaultAlt={state.defaultAlt}
+    featureAlt={state.featureAlt}
+    onMode={(mode) => dispatch({ type: "SET_MODE", mode })}
+    onDefaultAlt={(value) => dispatch({ type: "SET_DEFAULT_ALT", value })}
+    onFeatureAlt={(value) => dispatch({ type: "SET_FEATURE_ALT", value })}
+    onClearAB={() => dispatch({ type: "CLEAR_AB" })}
+    onClearFeatures={() => dispatch({ type: "CLEAR_FEATURES" })}
+    onResetAll={() => dispatch({ type: "RESET_ALL" })}
+  />
+
+  <Status mode={state.mode} A={state.A} B={state.B} featuresCount={state.features.length} />
+
+  <FeatureList
+    features={state.features}
+    onDelete={(id) => dispatch({ type: "DELETE_FEATURE", id })}
+  />
+</div>
+
 
       <CesiumGlobe onLeftClickLLH={onLeftClickLLH} onViewerReady={onViewerReady} />
     </div>

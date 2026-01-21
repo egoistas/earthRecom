@@ -12,20 +12,7 @@ export default function ControlPanel({
   onResetAll
 }) {
   return (
-    <div
-      style={{
-        position: "absolute",
-        zIndex: 10,
-        top: 12,
-        left: 12,
-        padding: 12,
-        background: "rgba(15,15,15,0.75)",
-        color: "white",
-        borderRadius: 10,
-        width: 420,
-        fontFamily: "system-ui, sans-serif"
-      }}
-    >
+    <div>
       <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
         <button onClick={() => onMode(Modes.PICK_AB)}>Pick A/B</button>
         <button onClick={() => onMode(Modes.ADD_RISK)}>Add Risk</button>

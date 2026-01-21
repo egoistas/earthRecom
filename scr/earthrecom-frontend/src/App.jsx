@@ -32,7 +32,7 @@ function mkFeature(kind, llh, altitudeOverride) {
   }
 }
 
-export default function App() {
+export default function App() { 
   const containerRef = useRef(null)
   const viewerRef = useRef(null)
   const handlerRef = useRef(null)
@@ -48,6 +48,19 @@ export default function App() {
   const [defaultAlt, setDefaultAlt] = useState(60)
   const [featureAlt, setFeatureAlt] = useState(60)
   const [features, setFeatures] = useState([])
+
+  const modeRef = useRef(mode)
+  const ARef = useRef(A)
+  const BRef = useRef(B)
+  const defaultAltRef = useRef(defaultAlt)
+  const featureAltRef = useRef(featureAlt)
+
+  useEffect(() => { modeRef.current = mode }, [mode])
+  useEffect(() => { ARef.current = A }, [A])
+  useEffect(() => { BRef.current = B }, [B])
+  useEffect(() => { defaultAltRef.current = defaultAlt }, [defaultAlt])
+  useEffect(() => { featureAltRef.current = featureAlt }, [featureAlt])
+
 
   const routePositions = useMemo(() => {
     if (!A || !B) return null
@@ -85,29 +98,46 @@ export default function App() {
 
       const llh = cartesianToLLH(cartesian)
 
-      if (mode === "pickAB") {
-        if (!A) setA({ ...llh, h: defaultAlt })
-        else if (!B) setB({ ...llh, h: defaultAlt })
-        else {
-          setA({ ...llh, h: defaultAlt })
-          setB(null)
-        }
-        return
-      }
+      const m = modeRef.current
+const a = ARef.current
+const b = BRef.current
 
-      if (mode === "addRisk") {
-        setFeatures((p) => [...p, mkFeature("risk", llh, featureAlt)])
-        return
-      }
+if (m === "pickAB") {
+  const p = { ...llh, h: defaultAltRef.current }
 
-      if (mode === "addNoFly") {
-        setFeatures((p) => [...p, mkFeature("no_fly", llh, featureAlt)])
-        return
-      }
+  if (!a) {
+    ARef.current = p
+    setA(p)
+    return
+  }
 
-      if (mode === "addBonus") {
-        setFeatures((p) => [...p, mkFeature("bonus", llh, featureAlt)])
-      }
+  if (!b) {
+    BRef.current = p
+    setB(p)
+    return
+  }
+
+  ARef.current = p
+  BRef.current = null
+  setA(p)
+  setB(null)
+  return
+}
+
+if (m === "addRisk") {
+  setFeatures((p) => [...p, mkFeature("risk", llh, featureAltRef.current)])
+  return
+}
+
+if (m === "addNoFly") {
+  setFeatures((p) => [...p, mkFeature("no_fly", llh, featureAltRef.current)])
+  return
+}
+
+if (m === "addBonus") {
+  setFeatures((p) => [...p, mkFeature("bonus", llh, featureAltRef.current)])
+}
+
     }, ScreenSpaceEventType.LEFT_CLICK)
 
     return () => {

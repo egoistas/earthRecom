@@ -1,1 +1,1 @@
-run npm dev
+run npm dev on frontend earthRecon

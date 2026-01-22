@@ -1,7 +1,6 @@
 import { Modes } from "../domain/state"
 
 export default function ControlPanel({
-  mode,
   defaultAlt,
   featureAlt,
   onMode,

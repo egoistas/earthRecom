@@ -50,8 +50,8 @@ export default function CesiumGlobe({ onLeftClickLLH, onViewerReady }) {
     }, ScreenSpaceEventType.LEFT_CLICK)
 
     return () => {
-      try { h.destroy() } catch {}
-      try { v.destroy() } catch {}
+      try { h.destroy() } catch {/* ignore */}
+      try { v.destroy() } catch {/* ignore */}
       handlerRef.current = null
       viewerRef.current = null
     }

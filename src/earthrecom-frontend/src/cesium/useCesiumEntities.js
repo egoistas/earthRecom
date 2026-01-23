@@ -3,11 +3,12 @@ import { Color } from "cesium"
 import { llhToCartesian } from "../domain/geo"
 import { featureColor } from "../domain/feature"
 
-export function useCesiumEntities(viewer, { A, B, routeLLH, features }) {
+export function useCesiumEntities(viewer, { A, B, routeLLH, features, fieldLLH }) {
   const AEntityRef = useRef(null)
   const BEntityRef = useRef(null)
   const routeEntityRef = useRef(null)
   const featureEntitiesRef = useRef(new Map())
+  const fieldEntityRef = useRef(null)
 
   useEffect(() => {
     if (!viewer) return
@@ -84,4 +85,27 @@ export function useCesiumEntities(viewer, { A, B, routeLLH, features }) {
       }
     }
   }, [viewer, features])
+
+  useEffect(() => {
+    if (!viewer) return
+
+    if (!fieldLLH || fieldLLH.length < 3) {
+      if (fieldEntityRef.current) {
+        viewer.entities.remove(fieldEntityRef.current)
+        fieldEntityRef.current = null
+      }
+      return
+    }
+
+    const pts = fieldLLH.map(llhToCartesian)
+    const closed = [...pts, pts[0]]
+
+    if (!fieldEntityRef.current) {
+      fieldEntityRef.current = viewer.entities.add({
+        polyline: { positions: closed, width: 3, material: Color.LIME }
+      })
+    } else {
+      fieldEntityRef.current.polyline.positions = closed
+    }
+  }, [viewer, fieldLLH])
 }

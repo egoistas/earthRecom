@@ -8,8 +8,11 @@ export default function ControlPanel({
   onFeatureAlt,
   onClearAB,
   onClearFeatures,
-  onResetAll
+  onResetAll,
+  onUndoFieldPoint,
+  onClearField
 }) {
+
   return (
     <div>
       <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
@@ -43,6 +46,8 @@ export default function ControlPanel({
 
       <div style={{ marginTop: 10, display: "flex", gap: 8 }}>
         <button onClick={onClearAB}>Clear A/B</button>
+        <button onClick={onUndoFieldPoint}>Undo Field Point</button>
+        <button onClick={onClearField}>Clear Field</button>
         <button onClick={onClearFeatures}>Clear Elements</button>
         <button onClick={onResetAll}>Reset All</button>
       </div>

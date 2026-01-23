@@ -24,7 +24,8 @@ export default function App() {
     A: state.A,
     B: state.B,
     routeLLH,
-    features: state.features
+    features: state.features,
+    fieldLLH: state.fieldLLH
   })
 
   return (
@@ -53,6 +54,8 @@ export default function App() {
     onClearAB={() => dispatch({ type: "CLEAR_AB" })}
     onClearFeatures={() => dispatch({ type: "CLEAR_FEATURES" })}
     onResetAll={() => dispatch({ type: "RESET_ALL" })}
+    onUndoFieldPoint={() => dispatch({ type: "UNDO_FIELD_POINT" })}
+    onClearField={() => dispatch({ type: "CLEAR_FIELD" })}
   />
 
   <Status mode={state.mode} A={state.A} B={state.B} featuresCount={state.features.length} />

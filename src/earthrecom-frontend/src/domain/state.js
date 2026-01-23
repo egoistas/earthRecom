@@ -4,19 +4,22 @@ export const Modes = {
   PICK_AB: "pickAB",
   ADD_RISK: "addRisk",
   ADD_NO_FLY: "addNoFly",
-  ADD_BONUS: "addBonus"
+  ADD_BONUS: "addBonus",
+  DRAW_FIELD: "drawField"
 }
 
 export function initialState() {
   return {
     mode: Modes.PICK_AB,
+    defaultAlt: 120,
+    featureAlt: 0,
     A: null,
     B: null,
-    defaultAlt: 60,
-    featureAlt: 60,
-    features: []
+    features: [],
+    fieldLLH: []
   }
 }
+
 
 export function routePositionsLLH(A, B) {
   if (!A || !B) return null

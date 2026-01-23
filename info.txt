@@ -1,1 +1,3 @@
 run npm dev on frontend earthRecon
+fix margin of the panel buttons... 
+streangthen the lines of the fields... sometimes they dont appear clearly

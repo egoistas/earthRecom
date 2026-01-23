@@ -36,6 +36,11 @@ export function applyMapClick(state, llh) {
     return { ...state, A: p, B: null }
   }
 
+  if (mode === Modes.DRAW_FIELD) {
+    const p = { ...llh, h: featureAlt }
+    return { ...state, fieldLLH: [...state.fieldLLH, p] }
+  }
+
   if (mode === Modes.ADD_RISK) {
     return { ...state, features: [...state.features, mkFeature("risk", llh, featureAlt)] }
   }
@@ -63,6 +68,10 @@ export function reducer(state, action) {
       return { ...state, A: null, B: null }
     case "CLEAR_FEATURES":
       return { ...state, features: [] }
+    case "UNDO_FIELD_POINT":
+      return { ...state, fieldLLH: state.fieldLLH.slice(0, -1) }
+    case "CLEAR_FIELD":
+      return { ...state, fieldLLH: [] }
     case "RESET_ALL":
       return initialState()
     case "DELETE_FEATURE":

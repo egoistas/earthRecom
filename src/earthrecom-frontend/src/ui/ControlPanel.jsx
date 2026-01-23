@@ -17,6 +17,7 @@ export default function ControlPanel({
         <button onClick={() => onMode(Modes.ADD_RISK)}>Add Risk</button>
         <button onClick={() => onMode(Modes.ADD_NO_FLY)}>Add No-Fly</button>
         <button onClick={() => onMode(Modes.ADD_BONUS)}>Add Bonus</button>
+        <button onClick={() => onMode(Modes.DRAW_FIELD)}>Draw Field</button>
       </div>
 
       <div style={{ marginTop: 10, display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10 }}>

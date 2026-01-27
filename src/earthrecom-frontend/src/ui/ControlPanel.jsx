@@ -12,7 +12,6 @@ export default function ControlPanel({
   onUndoFieldPoint,
   onClearField
 }) {
-
   return (
     <div>
       <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>

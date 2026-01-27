@@ -1,0 +1,7 @@
+Welcome to my developer guide on how this thing here works...
+So first  of all lets about on how to add a feature on front end.
+
+First of in frontend/src/App.jsx you can add in ControlPanel or 
+anywhere else the interactive utility.
+
+More on README.md

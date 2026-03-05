@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react"
 import {
+  Ion,
   Cartesian3,
   Ellipsoid,
   ScreenSpaceEventHandler,
@@ -8,6 +9,8 @@ import {
 } from "cesium"
 import "cesium/Build/Cesium/Widgets/widgets.css"
 import { cartesianToLLH } from "../domain/geo"
+
+Ion.defaultAccessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI2ZTRjYWVlOS04MDI5LTRjZjktYWVhYy1mYjc0MjhmMTE0ZmMiLCJpZCI6Mzk4NzAyLCJpYXQiOjE3NzI3MjMyNDV9.6yxDNXEdz20McDTaPIGapsXHLGGlYsUuC4UcNqV8ltA"
 
 export default function CesiumGlobe({ onLeftClickLLH, onViewerReady }) {
   const containerRef = useRef(null)
